@@ -1,6 +1,6 @@
 <?php
     // Include the configuration file
-    require_once "pmkn_config.php";
+    require_once "config/pmkn_config.php";
 
     try {
         // Create a PDO instance with MySQL DSN (Data Source Name) using values from the pmkn_config.php file
