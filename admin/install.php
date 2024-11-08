@@ -10,7 +10,7 @@ require_once __DIR__ . "/../includes/pmkn_database.php";
 // Check if the form has been submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get the submitted database name, or use the default value is no name is provided
-    $dbName = !empty($_POST["db_name"]) ? $_POST["db_name"] : "pmkn_database";
+    $dbName = !empty($_POST["db_name"]) ? $_POST["db_name"] : "pmkn_db";
 
     // Initialise the Database class
     $db = new Database();
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="POST" action="">
         <label for="db_name">Database Name (leave empty for the default):</label>
-        <input type="text" id="db_name" name="db_name" placeholder="pmkn_database">
+        <input type="text" id="db_name" name="db_name" placeholder="pmkn_db">
         <button type="submit">Install</button>
     </form>
 </body>

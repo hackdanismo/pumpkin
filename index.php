@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 // Include the database class includes file to access the database
 require_once "includes/pmkn_database.php";
 
+echo "Pumpkin";
+
+/*
 // Instantiate the Database class to create a new database object and connect to the database
 $db = new Database();
 
@@ -25,5 +28,5 @@ $columns = [
 ];
 
 $db->createTable($tableName, $columns);
-
+*/
     
