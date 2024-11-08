@@ -29,8 +29,8 @@ class Database {
         $this->conn = null;
     }
 
-    // Method to create a new database
-    public function createDatabase($dbName) {
+    // Method to create a new database with a default name if none is provided
+    public function createDatabase($dbName = "pmkn_database") {
         try {
             // Construct the SQL statement for creating a database
             $sql = "CREATE DATABASE IF NOT EXISTS $dbName CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
