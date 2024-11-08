@@ -5,13 +5,21 @@ class Database {
     private $conn;
 
     // Constructor method to initialize the database connection
-    public function __construct() {
+    public function __construct($useDbName = false) {
         // Include the configuration file to access the database credentials
-        require_once "config/pmkn_config.php";
+        require_once __DIR__ . "/../config/pmkn_config.php";
 
         try {
+            // Connect without specifying a database initially
+            $dsn = "mysql:host=" . DB_HOST;
+
+            if ($useDbName) {
+                // Add dbname to DSN if explicitly requested
+                $dsn .= ";dbname=" . DB_NAME;
+            }
+
             // Create a PDO instance with MySQL DSN (Data Source Name) using values from the pmkn_config.php file
-            $this->conn = new PDO("mysql:host=" .DB_HOST .";dbname=" . DB_NAME, DB_USER, DB_PASSWORD);
+            $this->conn = new PDO($dsn, DB_USER, DB_PASSWORD);
             // Set the PDO error mode to exception for robust error handling
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Database Connected Successfully.";
@@ -32,8 +40,10 @@ class Database {
     // Method to create a new database with a default name if none is provided
     public function createDatabase($dbName = "pmkn_database") {
         try {
+            // Ensure $dbName has a value value
+            $dbName = $dbName ?: "pmkn_database";
             // Construct the SQL statement for creating a database
-            $sql = "CREATE DATABASE IF NOT EXISTS $dbName CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+            $sql = "CREATE DATABASE IF NOT EXISTS `$dbName` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
             // Execute the SQL statement to create the database
             $this->conn->exec($sql);
             // Message displayed on successful creation
