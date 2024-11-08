@@ -29,6 +29,20 @@ class Database {
         $this->conn = null;
     }
 
+    // Method to create a new database
+    public function createDatabase($dbName) {
+        try {
+            // Construct the SQL statement for creating a database
+            $sql = "CREATE DATABASE IF NOT EXISTS $dbName CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+            // Execute the SQL statement to create the database
+            $this->conn->exec($sql);
+            // Message displayed on successful creation
+            echo "Database '$dbName' created successfully.";
+        } catch (PDOException $e) {
+            echo "Error creating the database: " . $e->getMessage();
+        }
+    }
+
     // Method to create a table in the database
     public function createTable($tableName, $columns) {
         try {

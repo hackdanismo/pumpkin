@@ -9,6 +9,11 @@ require_once "includes/pmkn_database.php";
 
 // Instantiate the Database class to create a new database object and connect to the database
 $db = new Database();
+
+// Create a database in MySQL if it not already exists
+$dbName = "pumpkin_db_test_creation";
+$db->createDatabase($dbName);
+
 // Create a test table in the database using the createTable() method
 $tableName = "test";
 $columns = [
